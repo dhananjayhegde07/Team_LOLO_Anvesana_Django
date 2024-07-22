@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+ 
+    </style>
+</head>
+<body>
+    <input type="file" id="file">
+    <button>Submit</button>
+</body>
+
+<script>
+    document.getElementsByTagName('button')[0].addEventListener('click',()=>{
+        get_img()
+    })
+    async function get_img(){
+        console.log('getimg')
+        let file=document.getElementsByTagName('input')[0].files[0]
+        let form=new FormData()
+        form.append('file',file)
+        let res=await fetch('http://localhost:8000/test/',{
+            method:'POST',
+            body:form
+        })
+        res=await res.json()
+        console.log(res);
+    }
+
+</script>
+</html>
